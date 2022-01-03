@@ -1,11 +1,18 @@
 // tools
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useLogout } from '../hooks/useLogout';
 
 // styles
 import './Navbar.css';
 import Logo from '../assets/temple.svg';
 
 export default function Navbar() {
+  // useAuthContext hook values
+  const { user } = useAuthContext();
+  // useLogout hook values
+  const { logout, error, isPending } = useLogout();
+
   return (
     <nav className="navbar">
       <ul>
@@ -15,8 +22,15 @@ export default function Navbar() {
           <span>Team</span>
         </li>
         {/* buttons */ }
-        <li><Link to="/login">Login</Link></li>
-        <li><Link to="/signup">Signup</Link></li>
+        { !user && (
+          <>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/signup">Signup</Link></li>
+          </>
+        ) }
+        { user && <li className='btn' onClick={ logout }>Log out</li> }
+        { isPending && <p>Please wait ...</p> }
+        { error && <p className='error'>{ error }</p> }
       </ul>
     </nav>
   );
