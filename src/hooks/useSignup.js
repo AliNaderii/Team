@@ -1,10 +1,15 @@
 // tools
 import { projectAuth, projectStorage } from "../firebase/config";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useAuthContext } from "./useAuthContext";
 
 export const useSignup = () => {
   const [ isPending, setIsPending ] = useState(false);
   const [ error, setError ] = useState(null);
+  // auth context values
+  const { dispatch } = useAuthContext();
+  // cleanup function state
+  const [ isCancelled, setIsCancelled ] = useState(false);
 
   const signup = async (email, password, displayName, avatar) => {
     setIsPending(true);
@@ -27,16 +32,30 @@ export const useSignup = () => {
       // update user displayName & photoURL
       await res.user.updateProfile({ displayName, photoURL: imageURL });
 
-      setError(null);
-      setIsPending(false);
+      // dispatch the new state
+      dispatch({ type: 'LOGIN', payload: res.user });
+
+      // update hook state if it's not unmounted
+      if (!isCancelled) {
+        setError(null);
+        setIsPending(false);
+      }
     }
     // catch any errors
     catch (err) {
       console.log(err.message);
-      setError(err.message);
-      setIsPending(false);
+      // update hook states if it's not unmounted
+      if (!isCancelled) {
+        setError(err.message);
+        setIsPending(false);
+      }
     }
   };
+
+  // cleanup function
+  useEffect(() => {
+    return () => setIsCancelled(true);
+  }, []);
 
   return { signup, error, isPending };
 };
