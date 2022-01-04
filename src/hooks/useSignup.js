@@ -1,5 +1,5 @@
 // tools
-import { projectAuth, projectStorage } from "../firebase/config";
+import { projectAuth, projectFirestore, projectStorage } from "../firebase/config";
 import { useState, useEffect } from 'react';
 import { useAuthContext } from "./useAuthContext";
 
@@ -31,6 +31,13 @@ export const useSignup = () => {
 
       // update user displayName & photoURL
       await res.user.updateProfile({ displayName, photoURL: imageURL });
+
+      // add user to the database
+      await projectFirestore.collection('users').doc(res.user.uid).set({
+        online: true,
+        displayName,
+        photoURL: imageURL
+      });
 
       // dispatch the new state
       dispatch({ type: 'LOGIN', payload: res.user });
