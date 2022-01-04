@@ -1,6 +1,6 @@
 // tools
 import { useState, useEffect } from 'react';
-import { projectFirestore } from '../firebase/config';
+import { projectFirestore, timestamp } from '../firebase/config';
 
 export const useFirestore = (collection) => {
   // hooks states
@@ -15,7 +15,8 @@ export const useFirestore = (collection) => {
     setIsPending(true);
 
     try {
-      const res = await projectFirestore.collection(collection).add(project);
+      const createdAt = timestamp.fromDate(new Date());
+      const res = await projectFirestore.collection(collection).add({ ...project, createdAt });
       // if anything went wrong
       if (!res) {
         throw new Error('Something went wrong');
