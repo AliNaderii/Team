@@ -8,17 +8,20 @@ export default function Card({ projects }) {
 
   return (
     <div className='card-container'>
-      <Link to='/'>
-        { projects && projects.map(project => (
-          <div className='card'>
-            <h4>{ project.title }</h4>
-            <p>Due by: { project.dueDate.toDate().toDateString() }</p>
-            { project.assignedTo.map(user => (
-              <img src={ user.photoURL } alt="avatar" className='thumb' />
-            )) }
-          </div>
-        )) }
-      </Link>
+      { projects && projects.map(project => (
+        <div key={ project.id }>
+          <Link to={ `/project/${project.id}` } >
+            <div className='card' key={ project.id }>
+              <h4>{ project.title }</h4>
+              <p>Due by: { project.dueDate.toDate().toDateString() }</p>
+              { project.assignedTo.map(user => (
+                <img src={ user.photoURL } alt="avatar" className='thumb' key={ user.photoURL } />
+              )) }
+            </div>
+          </Link>
+        </div>
+      ))
+      }
     </div >
   );
 }
