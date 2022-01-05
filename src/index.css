@@ -68,6 +68,8 @@ textarea {
 }
 textarea {
   min-height: 160px;
+  color: #000;
+  font-weight: bold;
 }
 .error {
   color: red;

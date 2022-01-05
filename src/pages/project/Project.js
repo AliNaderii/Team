@@ -1,56 +1,20 @@
 // tools
-import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { projectFirestore } from '../../firebase/config';
+import { useProject } from '../../hooks/useProject';
 
-// styles
+// styles && components
+import Comments from './Comments';
 import './Project.css';
 
 export default function Project() {
-  // component states
-  const [ project, setProject ] = useState(null);
-  const [ error, setError ] = useState(null);
-  const [ isCancelled, setIsCancelled ] = useState(false);
-
   // useParams hook values
   const { id } = useParams();
-
-  useEffect(() => {
-    // get the project from database
-    const getProject = async () => {
-      setError(null);
-      setProject(null);
-
-      try {
-        const res = await projectFirestore.collection('projects').doc(id).get();
-        if (!res) {
-          throw new Error('Could not fetch the project from database');
-        }
-
-        if (!isCancelled) {
-          setProject(res.data());
-          setError(null);
-        }
-
-      }
-      // catch errors
-      catch (err) {
-        console.log(err.message);
-        if (!isCancelled) {
-          setError(err.message);
-        }
-      }
-    };
-
-    getProject();
-
-    return () => setIsCancelled(true);
-  }, [ id, isCancelled ]);
-
-  console.log(project, error);
+  // useProject hook values
+  const { error, isPending, project } = useProject('projects', id);
 
   return (
     <div className='project-container'>
+      {/* project details */ }
       { project && (
         <div className='project-card'>
           <h3>{ project.title }</h3>
@@ -63,7 +27,12 @@ export default function Project() {
           )) }
         </div>
       ) }
-      { !project && <p>Please wait a moment ...</p> }
+      {/* comments */ }
+      { project && (
+        <Comments id={ id } />
+      ) }
+      {/* messages */ }
+      { isPending && <p>Please wait a moment ...</p> }
       { error && <p className='error'>{ error }</p> }
     </div>
   );

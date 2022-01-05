@@ -39,10 +39,36 @@ export const useFirestore = (collection) => {
     }
   };
 
+  // update project
+  const update = async (id, updates) => {
+    setError(null);
+    setIsPending(true);
+
+    try {
+      const res = await projectFirestore.collection(collection).doc(id).update(updates);
+
+      // upadate hook states if it's notunmounted
+      if (!isCancelled) {
+        setError(null);
+        setIsPending(false);
+      }
+      return res;
+    }
+    catch (err) {
+      console.log(err.message);
+      // update hook states if it's not unmounted
+      if (!isCancelled) {
+        setError(err.message);
+        setIsPending(false);
+      }
+      return null;
+    }
+  };
+
   // cleanup function
   useEffect(() => {
     return () => setIsCancelled(true);
   }, []);
 
-  return { add, error, isPending };
+  return { add, update, error, isPending };
 };
