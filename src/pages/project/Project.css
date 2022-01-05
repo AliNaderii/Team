@@ -1,0 +1,37 @@
+.project-container {
+  margin-top: 60px;
+}
+
+.project-card {
+  padding: 10px 20px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.project-card .creator {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.project-card .due {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.project-card .details {
+  padding: 30px 0;
+  color: #999;
+}
+
+.project-card .assigned-to {
+  color: #333;
+}
+
+.project-card .thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-top: 1rem;
+  margin-right: 0.6rem;
+}
