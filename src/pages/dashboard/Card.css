@@ -1,0 +1,31 @@
+.card-container a {
+  text-decoration: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 2em;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  padding: 10px 20px;
+}
+
+.card h4 {
+  color: #000;
+}
+
+.card p {
+  color: #999;
+  font-size: 0.9em;
+}
+
+.card .thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-top: 1.1rem;
+  margin-right: 0.6rem;
+}
