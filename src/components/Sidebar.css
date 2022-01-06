@@ -1,7 +1,6 @@
 /* the whole container */
 .sidebar {
-  width: 300px;
-  min-width: 300px;
+  min-width: 250px;
   background: var(--primary-color);
   min-height: 100vh;
   box-sizing: border-box;
@@ -12,7 +11,7 @@
 .sidebar .user {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   letter-spacing: 1px;
-  height: 25%;
+  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,8 +20,8 @@
 
 /* user thumbnail */
 .sidebar .thumb {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   background-color: #fff;
   border-radius: 50%;
 }
@@ -38,7 +37,7 @@
 .link-container .link {
   display: flex;
   justify-content: flex-start;
-  padding: 10px;
+  padding: 10px 0 10px 10px;
   margin-left: 25px;
 }
 
