@@ -5,7 +5,7 @@ import { projectFirestore, timestamp } from '../firebase/config';
 const initialState = {
   isPending: false,
   error: null,
-  success: false,
+  success: null,
   project: null
 };
 

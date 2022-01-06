@@ -4,6 +4,7 @@ import { useFirestore } from '../../hooks/useFirestore';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useCollection } from '../../hooks/useCollection';
 import { timestamp } from '../../firebase/config';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 
 // styles
@@ -28,9 +29,11 @@ export default function Create() {
   const [ formError, setFormError ] = useState(null);
 
   // hook values
-  const { add, error, isPending } = useFirestore('projects');
+  const { add, state } = useFirestore('projects');
+  console.log(state);
   const { user } = useAuthContext();
   const { data } = useCollection('users');
+  const navigate = useNavigate();
 
   // set select input options
   useEffect(() => {
@@ -44,7 +47,7 @@ export default function Create() {
   }, [ data ]);
 
   // handleSubmit function
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormError(null);
 
@@ -89,7 +92,10 @@ export default function Create() {
     console.log(project);
 
     // add the project to database
-    add(project);
+    await add(project);
+    if (!state.error) {
+      navigate('/');
+    }
   };
 
   return (
@@ -141,10 +147,10 @@ export default function Create() {
           onChange={ (option) => setCategory(option) }
         />
       </label>
-      { error && <p className="error">{ error }</p> }
+      { state.error && <p className="error">{ state.error }</p> }
       { formError && <p className='error'>{ formError }</p> }
-      { isPending && <button className="btn" disabled>Loading ...</button> }
-      { !isPending && <button className="btn">Add Project</button> }
+      { state.isPending && <button className="btn" disabled>Loading ...</button> }
+      { !state.isPending && <button className="btn">Add Project</button> }
     </form>
   );
 }

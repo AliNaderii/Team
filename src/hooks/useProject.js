@@ -6,47 +6,33 @@ export const useProject = (collection, id) => {
   // hook states
   const [ project, setProject ] = useState(null);
   const [ error, setError ] = useState(null);
-  const [ isPending, setIsPending ] = useState(false);
-  // cleanup function state
-  const [ isCancelled, setIsCancelled ] = useState(false);
 
+  // realtime project data
   useEffect(() => {
-    const getProject = async () => {
-      setError(null);
-      setIsPending(true);
+    // project refrence
+    const ref = projectFirestore.collection(collection).doc(id);
 
-      // get the project from
-      try {
-        const res = await projectFirestore.collection(collection).doc(id).get();
-        if (!res) {
-          throw new Error('Could not fetch the project from database');
-        }
-
-        // update states if component is not unmounted
-        if (!isCancelled) {
-          setProject(res.data());
-          setError(null);
-          setIsPending(false);
-        }
+    const unsub = ref.onSnapshot(snapshot => {
+      // need to make sure the project exists & has data
+      if (snapshot.data()) {
+        setProject({ ...snapshot.data(), id: snapshot.id });
+        setError(null);
       }
+      else {
+        setError('No such project exists');
+      }
+    },
       // catch errors
-      catch (err) {
-        console.log(err.message);
-        // update states if component is not unmounted
-        if (!isCancelled) {
-          setError(err.message);
-          setIsPending(false);
-        }
+      (error) => {
+        console.log(error);
       }
-    };
+    );
 
-    getProject();
+    // unsubscribe on unmount
+    return () => unsub();
 
-    // cleanup function
-    return () => setIsCancelled(true);
-
-  }, [ collection, id, isCancelled ]);
+  }, [ collection, id ]);
 
 
-  return { error, isPending, project };
+  return { error, project };
 };
