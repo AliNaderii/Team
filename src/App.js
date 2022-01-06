@@ -11,6 +11,7 @@ import Create from './pages/create/Create';
 import Project from './pages/project/Project';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+import AllUsers from './components/AllUsers';
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -30,6 +31,7 @@ function App() {
               <Route path='/project/:id' element={ user ? <Project /> : <Login /> } />
             </Routes>
           </div>
+          { user && <AllUsers /> }
         </BrowserRouter>
       ) }
     </div>
