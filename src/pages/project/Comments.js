@@ -15,7 +15,7 @@ export default function Comments({ id }) {
 
   // custom hook values
   const { user } = useAuthContext();
-  const { update, isPending } = useFirestore('projects');
+  const { update, state } = useFirestore('projects');
 
   // submit comment
   const handleSubmit = async (e) => {
@@ -29,11 +29,11 @@ export default function Comments({ id }) {
       id: Math.random()
     };
 
-    const res = await update(id, {
+    await update(id, {
       comments: [ ...project.comments, commentObject ]
     });
 
-    if (res) {
+    if (!state.error) {
       setComment('');
     }
   };
@@ -62,8 +62,8 @@ export default function Comments({ id }) {
           onChange={ (e) => setComment(e.target.value) }
           value={ comment }
         />
-        { isPending && <button className='btn'>Loading</button> }
-        { !isPending && <button className='btn'>Add Comment</button> }
+        { state.isPending && <button className='btn'>Loading</button> }
+        { !state.isPending && <button className='btn'>Add Comment</button> }
       </form>
 
     </div>
