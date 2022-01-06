@@ -1,0 +1,42 @@
+.all-users-container {
+  min-width: 200px;
+  padding-top: 20px;
+  text-align: right;
+  background-color: #fff;
+  box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  padding: 0 15px 15px 15px;
+  border-bottom: 1px solid rgb(206, 206, 206);
+  width: 100%;
+}
+
+.all-users {
+  padding: 15px;
+}
+
+.users {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 10px 0;
+}
+
+.users .name {
+  margin: 0 10px;
+}
+
+.users .thumb {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.users .online {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: green;
+}

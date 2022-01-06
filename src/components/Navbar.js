@@ -11,7 +11,7 @@ export default function Navbar() {
   // useAuthContext hook values
   const { user } = useAuthContext();
   // useLogout hook values
-  const { logout, error, isPending } = useLogout();
+  const { logout, error } = useLogout();
 
   return (
     <nav className="navbar">
@@ -29,7 +29,6 @@ export default function Navbar() {
           </>
         ) }
         { user && <li className='btn' onClick={ logout }>Log out</li> }
-        { isPending && <p>Please wait ...</p> }
         { error && <p className='error'>{ error }</p> }
       </ul>
     </nav>
