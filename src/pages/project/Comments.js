@@ -4,6 +4,7 @@ import { useProject } from '../../hooks/useProject';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { timestamp } from '../../firebase/config';
 import { useFirestore } from '../../hooks/useFirestore';
+import { formatDistanceToNow } from 'date-fns';
 
 // styles
 import './Comments.css';
@@ -49,7 +50,13 @@ export default function Comments({ id }) {
             <img className="thumb" src={ comment.photoURL } alt='avatar' />
             <p>{ comment.creator }</p>
           </div>
-          <p className="date">{ comment.createdAt.toDate().toDateString() }</p>
+          <p className="date">
+            {
+              formatDistanceToNow(
+                comment.createdAt.toDate(),
+                { addSuffix: true }
+              )
+            }</p>
           <p className="text">{ comment.text }</p>
         </div>
       )) }
