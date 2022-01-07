@@ -28,10 +28,10 @@ const projectReducer = (state, action) => {
       return {
         isPending: false, error: null, success: true, project: action.payload
       };
-    // case 'DELETE_PROJECT':
-    //   return {
-    //     isPending: false, error: null, success: true, project: null
-    //   };
+    case 'DELETE_PROJECT':
+      return {
+        isPending: false, error: null, success: true, project: null
+      };
     default:
       return state;
   }
@@ -93,28 +93,28 @@ export const useFirestore = (collection) => {
     }
   };
 
-  // // delete a project
-  // const deleteProject = async (id) => {
-  //   dispatch({ type: 'IS_PENDING' });
+  // delete a project
+  const deleteProject = async (id) => {
+    dispatch({ type: 'IS_PENDING' });
 
-  //   try {
-  //     await ref.doc(id).delete();
+    try {
+      await ref.doc(id).delete();
 
-  //     // update hook states if it's not unmounted
-  //     dispatchIfStillMounted({ type: 'DELETE_PROJECT' });
-  //   }
-  //   // catch any errors
-  //   catch (err) {
-  //     console.log(err.message);
-  //     // update hook states if it's not unmounted
-  //     dispatchIfStillMounted({ type: 'ERROR', payload: 'could not delete' });
-  //   }
-  // };
+      // update hook states if it's not unmounted
+      dispatchIfStillMounted({ type: 'DELETE_PROJECT' });
+    }
+    // catch any errors
+    catch (err) {
+      console.log(err.message);
+      // update hook states if it's not unmounted
+      dispatchIfStillMounted({ type: 'ERROR', payload: 'could not delete' });
+    }
+  };
 
   // cleanup function
   useEffect(() => {
     return () => setIsCancelled(true);
   }, []);
 
-  return { add, update, state };
+  return { add, deleteProject, update, state };
 };
