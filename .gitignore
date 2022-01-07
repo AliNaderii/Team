@@ -27,4 +27,4 @@ yarn-error.log*
 firebase.json
 firestore.indexes.json
 firestore.rules
-sorage.rules
+storage.rules
