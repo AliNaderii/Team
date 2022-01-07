@@ -13,6 +13,11 @@
   height: fit-content;
 }
 
+.project-card button {
+  display: block;
+  margin-top: 10px;
+}
+
 .project-card .creator {
   font-size: 1.2rem;
   font-weight: 500;

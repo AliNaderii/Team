@@ -1,16 +1,20 @@
 // tools
 import { useParams } from 'react-router-dom';
 import { useProject } from '../../hooks/useProject';
+import { projectAuth } from '../../firebase/config';
 
 // styles && components
 import Comments from './Comments';
 import './Project.css';
+import DeleteButton from './DeleteButton';
 
 export default function Project() {
   // useParams hook values
   const { id } = useParams();
   // useProject hook values
   const { error, isPending, project } = useProject('projects', id);
+  // projectAuth values
+  const { uid } = projectAuth.currentUser;
 
   return (
     <div className='project-container'>
@@ -25,6 +29,9 @@ export default function Project() {
           { project.assignedTo.map(user => (
             <img className='thumb' src={ user.photoURL } alt='avatar' key={ user.photoURL } />
           )) }
+          { project.createdBy.id === uid ?
+            <DeleteButton projectID={ project.id } /> : null
+          }
         </div>
       ) }
       {/* comments */ }
