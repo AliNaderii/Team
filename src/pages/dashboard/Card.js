@@ -14,7 +14,7 @@ export default function Card({ projects }) {
           <p>Due by: { project.dueDate.toDate().toDateString() }</p>
           <div className="assigned-to">
             <p><strong>Assigned to:</strong></p>
-            <ul className='card' >
+            <ul >
               { project.assignedTo.map(user => (
                 <li key={ project.id }>
                   <img src={ user.photoURL } alt="avatar" className='thumb' key={ user.photoURL } />
