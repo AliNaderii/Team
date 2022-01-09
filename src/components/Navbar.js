@@ -17,18 +17,20 @@ export default function Navbar() {
     <nav className="navbar">
       <ul>
         {/* logo */ }
-        <li className="logo">
-          <img src={ Logo } alt="logo" />
-          <span>Team</span>
-        </li>
+        <div className='logo-container'>
+          <li className="logo">
+            <img src={ Logo } alt="logo" />
+            <span>Team</span>
+          </li>
+        </div>
         {/* buttons */ }
         { !user && (
           <>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/signup">Signup</Link></li>
+            <li className='login-btn'><Link to="/login">Login</Link></li>
+            <li className='signup-btn'><Link to="/signup">Signup</Link></li>
           </>
         ) }
-        { user && <li className='btn' onClick={ logout }>Log out</li> }
+        { user && <li className='btn logout' onClick={ logout }>Log out</li> }
         { error && <p className='error'>{ error }</p> }
       </ul>
     </nav>

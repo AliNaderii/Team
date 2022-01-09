@@ -45,3 +45,11 @@
   margin-top: 1rem;
   margin-right: 0.6rem;
 }
+
+/* media query */
+@media screen and (max-width: 425px) {
+  .project-container {
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+  }
+}
