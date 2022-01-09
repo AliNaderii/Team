@@ -44,3 +44,10 @@
 .comments-container form h4 {
   margin-bottom: 0.9rem;
 }
+
+/* media query */
+@media screen and (max-width: 425px) {
+  .comments-container {
+    margin-top: 30px;
+  }
+}

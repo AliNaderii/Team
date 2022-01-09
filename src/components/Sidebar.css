@@ -1,10 +1,15 @@
 /* the whole container */
 .sidebar {
-  min-width: 250px;
+  width: 250px;
   background: var(--primary-color);
-  min-height: 100vh;
+  min-height: 100%;
   box-sizing: border-box;
   color: #fff;
+  position: relative;
+}
+
+.sidebar .sm-logout {
+  display: none;
 }
 
 /* user info */
@@ -16,6 +21,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.sidebar .user > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 /* user thumbnail */
@@ -35,16 +47,18 @@
 
 /* the links themselves */
 .link-container .link {
-  display: flex;
-  justify-content: flex-start;
-  padding: 10px 0 10px 10px;
-  margin-left: 25px;
+  margin-left: 15px;
+}
+
+.link-container .link span {
+  margin-left: 5px;
 }
 
 /* image inside link */
 .link-container .link img {
   filter: invert(100%);
-  margin-right: 10px;
+  margin-right: 15px;
+  margin-top: 5px;
 }
 
 /* the whole link: image + text*/
@@ -64,6 +78,75 @@
   border-radius: 20px 0 0 20px;
 }
 
+.link-container .link img {
+  margin-right: 0;
+  margin-bottom: 5px;
+}
+
 .link-container a.active img {
   filter: invert(30%);
+}
+
+/* media query */
+
+@media screen and (max-width: 425px) {
+  .sidebar {
+    height: fit-content;
+    width: inherit;
+    background-color: unset;
+    padding: 0 10px;
+    margin-top: 10px;
+  }
+
+  .sidebar-container {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+  }
+
+  .sidebar .sm-logout {
+    display: block;
+  }
+
+  .sidebar .user {
+    height: 100px;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .sidebar .user > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sidebar .thumb {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .sidebar .link-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .link-container .link {
+    padding: 0;
+    margin-left: 0;
+  }
+
+  .sidebar a {
+    flex-direction: column;
+    padding: 5px;
+    margin: 10px 30px 10px 10px;
+    font-size: 0.9rem;
+  }
+
+  .link-container a.active {
+    border-radius: 5px;
+  }
 }

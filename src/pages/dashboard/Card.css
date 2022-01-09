@@ -40,3 +40,14 @@
   margin-top: 1.1rem;
   margin-right: 0.6rem;
 }
+
+/* media query */
+@media screen and (max-width: 425px) {
+  .card-container .thumb {
+    margin-right: 0;
+  }
+
+  .card-container ul {
+    margin: 0;
+  }
+}

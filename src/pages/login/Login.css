@@ -7,3 +7,27 @@
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.05);
   background: #fff;
 }
+
+.login .signup-text {
+  display: none;
+}
+
+/* media query */
+@media screen and (max-width: 425px) {
+  .login {
+    margin: 20px auto;
+    padding: 20px 40px;
+  }
+
+  .login .signup-text {
+    display: block;
+  }
+
+  .login p {
+    margin-top: 20px;
+  }
+
+  .login a {
+    color: #8d60f1;
+  }
+}
