@@ -6,8 +6,8 @@ export default function Filter({ filters, changeFilter }) {
 
   return (
     <div>
+      <h5>Filter by</h5>
       <div className='filter-container'>
-        <div>Filter by:</div>
         { filters.map(filter => (
           <div
             className='filter'

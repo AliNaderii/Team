@@ -150,3 +150,9 @@
     border-radius: 5px;
   }
 }
+
+@media screen and (min-width: 2560px) {
+  .sidebar {
+    min-height: 100vh;
+  }
+}
