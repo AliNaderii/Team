@@ -46,7 +46,7 @@
 }
 
 /* media query */
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 768px) {
   .comments-container {
     margin-top: 30px;
   }

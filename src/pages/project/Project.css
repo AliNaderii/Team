@@ -15,7 +15,8 @@
 
 .project-card button {
   display: block;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .project-card .creator {
@@ -47,7 +48,7 @@
 }
 
 /* media query */
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 768px) {
   .project-container {
     grid-template-columns: 1fr;
     margin-top: 20px;
