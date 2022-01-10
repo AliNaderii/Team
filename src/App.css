@@ -8,7 +8,7 @@
 }
 
 /* media queryies */
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 768px) {
   .App {
     flex-direction: column;
     font-size: 1.1rem;

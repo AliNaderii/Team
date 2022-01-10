@@ -41,26 +41,26 @@ export default function Comments({ id }) {
 
   return (
     <div className='comments-container'>
-
-      {/* single comment */ }
-      <h3 className="page-title">Project Comments</h3>
-      { project && project.comments.map(comment => (
-        <div className="comment" key={ comment.id }>
-          <div className="creator">
-            <img className="thumb" src={ comment.photoURL } alt='avatar' />
-            <p>{ comment.creator }</p>
+      <div>
+        {/* single comment */ }
+        <h3 className="page-title">Project Comments</h3>
+        { project && project.comments.map(comment => (
+          <div className="comment" key={ comment.id }>
+            <div className="creator">
+              <img className="thumb" src={ comment.photoURL } alt='avatar' />
+              <p>{ comment.creator }</p>
+            </div>
+            <p className="date">
+              {
+                formatDistanceToNow(
+                  comment.createdAt.toDate(),
+                  { addSuffix: true }
+                )
+              }</p>
+            <p className="text">{ comment.text }</p>
           </div>
-          <p className="date">
-            {
-              formatDistanceToNow(
-                comment.createdAt.toDate(),
-                { addSuffix: true }
-              )
-            }</p>
-          <p className="text">{ comment.text }</p>
-        </div>
-      )) }
-
+        )) }
+      </div>
       {/* add comment form */ }
       <form onSubmit={ handleSubmit }>
         <h4 className='page-title'>Add new comment</h4>

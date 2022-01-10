@@ -30,7 +30,7 @@
 }
 
 /* media query */
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 710px) {
   .dashboard {
     margin-top: 40px;
   }
@@ -44,5 +44,16 @@
 
   .filter-container div:first-child {
     display: none;
+  }
+}
+
+/* tablet view */
+@media screen and (max-width: 768px) {
+  .dashboard {
+    margin-top: 40px;
+  }
+
+  .filter-container {
+    margin-top: 30px;
   }
 }

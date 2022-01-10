@@ -22,3 +22,17 @@
     margin-top: 20px;
   }
 }
+
+/* tablet view */
+@media screen and (max-width: 768px) {
+  .create {
+    max-width: 100%;
+    border: none;
+    margin: 30px auto 10px;
+    padding: 30px 40px;
+  }
+
+  .create button {
+    margin-top: 20px;
+  }
+}

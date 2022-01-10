@@ -13,7 +13,7 @@
 }
 
 /* media query */
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 768px) {
   .login {
     margin: 20px auto;
     padding: 20px 40px;
