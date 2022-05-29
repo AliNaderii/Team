@@ -18,22 +18,22 @@ function App() {
 
   return (
     <div className="App">
-      { authIsReady && (
+      {authIsReady && (
         <BrowserRouter>
-          { user && <Sidebar /> }
+          {user && <Sidebar />}
           <div className='container'>
             <Navbar />
             <Routes>
-              <Route path='/' element={ user ? <Dashboard /> : <Login /> } />
-              <Route path='/login' element={ !user ? <Login /> : <Dashboard /> } />
-              <Route path='/signup' element={ !user ? <Signup /> : <Dashboard /> } />
-              <Route path='/create' element={ user ? <Create /> : <Login /> } />
-              <Route path='/project/:id' element={ user ? <Project /> : <Login /> } />
+              <Route path='/' element={user ? <Dashboard /> : <Login />} />
+              <Route path='/login' element={!user ? <Login /> : <Dashboard />} />
+              <Route path='/signup' element={!user ? <Signup /> : <Dashboard />} />
+              <Route path='/create' element={user ? <Create /> : <Login />} />
+              <Route path='/project/:id' element={user ? <Project /> : <Login />} />
             </Routes>
           </div>
-          { user && <AllUsers /> }
+          {user && <AllUsers />}
         </BrowserRouter>
-      ) }
+      )}
     </div>
   );
 }
