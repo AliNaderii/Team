@@ -22,7 +22,7 @@ Team is a simple platform for project management.
 
 1. Clone from Github
 
- - git clone https://github.com/AliNaderii/admin-dashboard.git
+ - git clone https://github.com/AliNaderii/project-management.git
 
 2. Run `npm install` or `yarn install`
 
